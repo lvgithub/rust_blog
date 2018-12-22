@@ -9,7 +9,7 @@
             "type": "lldb",
             "request": "launch",
             "cwd": "${workspaceRoot}",
-            "program": "./target/debug/helloworld"
+            "program": "target/debug/helloworld"
         }
     ]
 }
