@@ -1,4 +1,7 @@
 
+### rust的特点
+* Rust 的核心功能 所有权(ownership)，通过所有权系统管理内存,编译器在编译时会根据一系列的规则进行检查。在运行时，所有权系统的任何功能都不会减慢程序
+
 ### 默认安装路径
 ```
 cargo: ~/.cargo/bin             # rust执行文件目录就在这里（环境变量地址）  
@@ -27,17 +30,17 @@ cargo check               # 检查
 # 1_000 等同于 1000， 0.000_001 等同于 0.000001。
 # Rust 的 char 类型代表了一个 Unicode 标量值
 ```
+### [ownership(rust内存回收机制)](./owership.md)
+### [cargo-watch(watch改动，自动编译)](https://github.com/passcod/cargo-watch)
 
-## [cargo-watch(watch改动，自动编译)](https://github.com/passcod/cargo-watch)
-
-## 模块
+### 模块
 * mod 关键字创建一个新模块
 * use 关键字允许您使用模块（在要使用这些定义的范围内公开它们）
 * pub 关键字将模块的元素设置为公有（否则它们是私有的）
 
-## [控制流](./control_flow.md)
+### [控制流](./control_flow.md)
 
-## 类型
+### 类型
 * 布尔类型：有两个值true和false。
 * 字符类型：表示单个Unicode字符，存储为4个字节。
 * 数值类型：分为有符号整数 (i8, i16, i32, i64, isize)、 无符号整数 (u8, u16, u32, u64, usize) 以及浮点数 (f32, f64)。

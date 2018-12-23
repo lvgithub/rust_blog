@@ -9,7 +9,7 @@ fn main() {
     // assert_eq!(a1, a3); // throw error
 
     // 解构
-    let (a, mut b): (bool, bool) = (true, false);
+    let (a,  b): (bool, bool) = (true, false);
     println!("a={},b={}", a, b);
 
     // char
@@ -17,11 +17,11 @@ fn main() {
     println!("char:{}", c);
 
     // float
-    let float: f64 = -1.23e+2;
+    let float: f64 = 1.23e+2;
     println!("float:{}", float);
 
     // zero
-    let zero = float.abs_sub(123.33);
+    let zero = (float-123.00).abs();
     println!("zero:{}", zero);
 
     // 二进制
@@ -34,5 +34,13 @@ fn main() {
 
     // 十六进制
     let hex = 0xA;
-    println!("hex:{}", hex)
+    println!("hex:{}", hex);
+
+    // b"..."	字节字符串字面值; 构造一个 [u8] 类型而非字符串
+    let byte = b"hello byte";
+    let strq = String::from_utf8(byte.to_vec()).unwrap();
+    println!("byte:{}",strq);
+
+    let heart_eyed_cat = "😻";
+    println!("cat:{}",heart_eyed_cat);
 }

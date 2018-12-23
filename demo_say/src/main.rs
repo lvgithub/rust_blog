@@ -7,5 +7,5 @@ fn main() {
     let width = 24;
 
     let mut writer = BufWriter::new(stdout.lock());
-    say(out, width, &mut writer).unwrap();
+    say(out, width, &mut writer).unwrap();// 异步
 }

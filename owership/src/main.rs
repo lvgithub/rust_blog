@@ -1,0 +1,26 @@
+fn main() {
+    let s = String::from("hello");  // s 进入作用域
+
+    run_move(s);                    // s 的值移动到函数里,s失效
+                                    // 因此到这里，s不再有效
+    /* 
+    将会报错：因为s已经被move
+    报错信息：will error value borrowed here after move
+    println!("s:{}",s);            
+    */
+    let x = 5;                      // x 进入作用域
+
+    run_copy(x);                    // x 应该移动函数里
+    println!("x:{}",x);             // 因为 x 是 栈变量，因为不会被 move 使失效
+
+} 
+//  x 移出了作用域，
+//  s 移出了作用域但,因为 s 的值已被移走，所以不会有特殊操作
+
+fn run_move(some_string: String) { // some_string 进入作用域
+    println!("run_move:{}", some_string);
+} // 这里，some_string 移出作用域并调用 `drop` 方法。占用的内存被释放
+
+fn run_copy(some_integer: i32) { // some_integer 进入作用域
+    println!("run_copy:{}", some_integer);
+} // some_integer 移出作用域
