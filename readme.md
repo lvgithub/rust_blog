@@ -1,40 +1,34 @@
 
-## rust 默认安装路径
-.cargo/bin
-
-## rustup 默认安装路径
-~/.rustup/toolchains 
-
-## 编译
-* cargo build
-* cargo build --release     #编译优化
-* cargo run                 #编译后同时执行
-* cargo check               #检查
-
-## 变量不可变
+### 默认安装路径
 ```
-let foo = 5; // 不可变
-let mut bar = 5; // 可变
-```
-## 版本
-* nightly
-* beta
-* stable
-```
-# 切换版本
-rustup default nightly
-```
-## 工具链
-```
-rustup toolchain list
+cargo: ~/.cargo/bin             # rust执行文件目录就在这里（环境变量地址）  
+rustup: ~/.rustup/toolchains    # 工具执行文件地址
 ```
 
-## 
+### 版本
 ```
-rustup override
+# Rust 提供了三个版本渠道：nightly，beta，还有stable。不稳定特性只在 Nightly 
+# 切换版本: rustup default [nightly|beta|stable]
 ```
-## [cargo-watch](https://github.com/passcod/cargo-watch)
-* 文件修改后会自动编译
+
+### 编译
+```
+cargo build               # 编译
+cargo build --release     # 编译优化
+cargo run                 # 编译后同时执行
+cargo check               # 检查
+```
+### [安装vscode环境](./vscode_guide.md)
+### 基础语法
+```
+# let foo = 5; // 不可变
+# let mut bar = 5; // 可变
+# 数字可以加上前缀 0x、0o、0b 分别表示十六进制数、八进制数、二进制数
+# 1_000 等同于 1000， 0.000_001 等同于 0.000001。
+# Rust 的 char 类型代表了一个 Unicode 标量值
+```
+
+## [cargo-watch(watch改动，自动编译)](https://github.com/passcod/cargo-watch)
 
 ## 模块
 * mod 关键字创建一个新模块
