@@ -7,6 +7,7 @@
 * 移动（堆内存变量），当值(s1)被赋值给另外一个变量(s2)后，rust则认为变量s1，不再有效。
 * 栈类型变量无移动的说法（没有深浅拷贝的区别）
 * 将值传递给函数在语义上与给变量赋值相似
+* 利用引用让变量不被函数参数move
 
 ### 变量与数据的交互（move）
 * 将 5 绑定到 x；接着生成一个值 x 的拷贝并绑定到 y。现在有了两个变量，x 和 y，都等于 5。因为正数是有已知固定大小的简单值，所以这两个 5 被放入了栈中（重点：两个值都放入栈中了）。
@@ -79,7 +80,6 @@ fn main() {
 
     run_copy(x);                    // x 应该移动函数里
     println!("x:{}",x);             // 因为 x 是 栈变量，因为不会被 move 使失效
-
 } 
 //  x 移出了作用域，
 //  s 移出了作用域但,因为 s 的值已被移走，所以不会有特殊操作
@@ -91,4 +91,46 @@ fn run_move(some_string: String) { // some_string 进入作用域
 fn run_copy(some_integer: i32) { // some_integer 进入作用域
     println!("run_copy:{}", some_integer);
 } // some_integer 移出作用域
+
+```
+### 利用引用让变量不被函数参数move
+* 引用它允许你使用值但不获取其所有权
+* 当引用离开作用域后并不丢弃它指向的数据
+    ``` rust
+
+    fn main() {
+        let s1 = String::from("world"); // s1 进入作用域
+        run_not_move(&s1);              // 传递说s1的引用作为参数
+        println!("s2:{}",s1);           // 正常打印
+
+       // &s1.push_str("push"); //cannot borrow as mutable 
+       
+       /* 这样也不行
+       let mut mys1  = &s1;
+       mys1.push_str("push");
+       */
+    }
+
+    fn run_not_move(s: &String){ //s 是指向说s1的引用，不会触发move
+        println!("run_not_move:{}", s);
+        //s.push_str(",okok"); # 1-1：执行本操作报错：`s` is a `&` reference, so the data it refers to cannot be borrowed as mutable
+    }// 变量s离开作用域
+    ```
+* 如图1-5,引用s指向是s1,但不拥有它的值,因此我们可以正常打印出s1的值
+* 因此我们称呼s为借用，&s1为引用
+* 借用只可读,不允许通过借用去修改借来的值(如代码1-1处)
+![图1-5(引用示意图)](./img/ptr_s5.png)
+
+### 可变引用
+* 在特定作用域中的特定数据有且只有一个可变引用
+* 不能在拥有不可变引用的同时拥有可变引用
+``` rust
+fn main() {
+    let mut s = String::from("hello");
+    change(&mut s);
+}
+
+fn change(some_string: &mut String) {
+    some_string.push_str(", world");
+}
 ```
