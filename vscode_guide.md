@@ -4,13 +4,13 @@
  * 只适配vscode编辑器
 
 ## 第一步:安装rustup
-```
+```shell
 ## 安装好rust记得配置环境变量
 curl https://sh.rustup.rs -sSf | sh
 ```
 
 ## 第二步:安装依赖
-```
+``` shell
 rustup component add rust-src       ##
 rustup component add rustfmt        ## 代码格式化
 rustup component add clippy         ## 一个代码小工具集用于捕获常见错误，以及提高Rust代码质量
